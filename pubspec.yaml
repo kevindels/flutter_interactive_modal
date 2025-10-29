@@ -1,0 +1,19 @@
+name: interactive_modal
+description: A Flutter package that allows you to display an interactive modal overlay on top of other widgets while maintaining interaction with both the modal and background content.
+version: 0.0.1
+homepage: https://github.com/yourusername/interactive_modal
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
