@@ -193,4 +193,4 @@ Created with ❤️ Kevin Dels for the Flutter community
 
 ## Support
 
-If you find this package helpful, please give it a ⭐ on [GitHub](https://github.com/kevindels/interactive_modal)!
+If you find this package helpful, please give it a ⭐ on [GitHub](https://github.com/kevindels/flutter_interactive_modal/)!
