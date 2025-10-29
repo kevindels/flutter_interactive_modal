@@ -117,62 +117,64 @@ class _SimplePageState extends State<SimplePage> {
   }
 
   Widget _buildModalContent() {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Modal Controls',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () => _controller.hide(),
-              ),
-            ],
-          ),
-          const Divider(),
-          const SizedBox(height: 20),
-          Text(
-            'Modal Counter: $_modalCounter',
-            style: const TextStyle(fontSize: 28),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton.icon(
-                onPressed: () {
-                  setState(() {
-                    _modalCounter++;
-                  });
-                },
-                icon: const Icon(Icons.add),
-                label: const Text('Increment'),
-              ),
-              const SizedBox(width: 10),
-              ElevatedButton.icon(
-                onPressed: () {
-                  setState(() {
-                    _modalCounter = 0;
-                  });
-                },
-                icon: const Icon(Icons.refresh),
-                label: const Text('Reset'),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          const Text(
-            'Notice how you can interact with both\nthe modal and the background simultaneously!',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 14),
-          ),
-        ],
-      ),
-    );
+    return ListView(children: [
+      Container(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Modal Controls',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () => _controller.hide(),
+                ),
+              ],
+            ),
+            const Divider(),
+            const SizedBox(height: 20),
+            Text(
+              'Modal Counter: $_modalCounter',
+              style: const TextStyle(fontSize: 28),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () {
+                    setState(() {
+                      _modalCounter++;
+                    });
+                  },
+                  icon: const Icon(Icons.add),
+                  label: const Text('Increment'),
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    setState(() {
+                      _modalCounter = 0;
+                    });
+                  },
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Reset'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'Notice how you can interact with both\nthe modal and the background simultaneously!',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 14),
+            ),
+          ],
+        ),
+      )
+    ]);
   }
 }
