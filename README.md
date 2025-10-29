@@ -170,7 +170,6 @@ See the [example](example/lib/main.dart) folder for a complete implementation th
 2. **Video Players**: Show playback controls over video content
 3. **Image Viewers**: Display tools while allowing image manipulation
 4. **Data Visualization**: Show filters over interactive charts
-5. **Gaming**: Display UI elements over game canvas
 
 ## Key Differences from Standard Modals
 
@@ -190,8 +189,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Author
 
-Created with ❤️ for the Flutter community
+Created with ❤️ Kevin Dels for the Flutter community
 
 ## Support
 
-If you find this package helpful, please give it a ⭐ on [GitHub](https://github.com/yourusername/interactive_modal)!
+If you find this package helpful, please give it a ⭐ on [GitHub](https://github.com/kevindels/interactive_modal)!
