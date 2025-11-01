@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'interactive_modal_controller.dart';
 
 /// Position of the modal on the screen
-enum ModalPosition { top, center, bottom, custom }
+enum ModalPosition { top, bottom }
 
 /// A widget that displays an interactive modal overlay on top of background content
 /// while allowing interaction with both the modal and the background.
@@ -20,7 +20,7 @@ class InteractiveModal extends StatefulWidget {
   final ModalPosition position;
 
   /// Custom positioning when position is set to ModalPosition.custom
-  final EdgeInsets? customPadding;
+  //final EdgeInsets? customPadding;
 
   /// Height of the modal (defaults to 1/4 of screen height)
   final double? modalHeight;
@@ -40,19 +40,23 @@ class InteractiveModal extends StatefulWidget {
   /// Shadow for the modal
   final List<BoxShadow>? boxShadow;
 
+  /// Whether the modal can be dragged around the screen
+  final bool isDraggable;
+
   const InteractiveModal({
     super.key,
     required this.background,
     required this.modalContent,
     required this.controller,
     this.position = ModalPosition.bottom,
-    this.customPadding,
+    //this.customPadding,
     this.modalHeight,
     this.animate = true,
     this.animationDuration = const Duration(milliseconds: 300),
     this.modalBackgroundColor,
     this.borderRadius,
     this.boxShadow,
+    this.isDraggable = false,
   });
 
   @override
@@ -63,6 +67,11 @@ class _InteractiveModalState extends State<InteractiveModal>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<Offset> _slideAnimation;
+  late Animation<double> _opacityAnimation;
+
+  // Variables for drag functionality
+  Offset _dragOffset = Offset.zero;
+  Offset _dragStartOffset = Offset.zero;
 
   @override
   void initState() {
@@ -74,8 +83,42 @@ class _InteractiveModalState extends State<InteractiveModal>
     );
 
     _updateSlideAnimation();
+    _updateOpacityAnimation();
 
     widget.controller.addListener(_onControllerChanged);
+
+    // Initialize drag offset after first frame to get screen size
+    if (widget.isDraggable) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _initializeDragPosition();
+      });
+    }
+  }
+
+  void _initializeDragPosition() {
+    if (!mounted) return;
+
+    final screenSize = MediaQuery.of(context).size;
+    final modalHeight = widget.modalHeight ?? screenSize.height / 4;
+    final modalWidth = screenSize.width - 20;
+
+    // Calculate initial position based on modal position setting
+    // Center horizontally by default
+    double initialX = (screenSize.width - modalWidth) / 2;
+    double initialY;
+
+    switch (widget.position) {
+      case ModalPosition.top:
+        initialY = 5;
+        break;
+      case ModalPosition.bottom:
+        initialY = screenSize.height - modalHeight - 20;
+        break;
+    }
+
+    setState(() {
+      _dragOffset = Offset(initialX, initialY);
+    });
   }
 
   void _updateSlideAnimation() {
@@ -87,15 +130,21 @@ class _InteractiveModalState extends State<InteractiveModal>
       case ModalPosition.bottom:
         begin = const Offset(0, 1);
         break;
-      case ModalPosition.center:
-        begin = const Offset(0, 1);
-        break;
-      case ModalPosition.custom:
-        begin = const Offset(0, 1);
-        break;
+      // case ModalPosition.center:
+      //   begin = const Offset(0, 1);
+      //   break;
+      // case ModalPosition.custom:
+      //   begin = const Offset(0, 1);
+      //   break;
     }
 
     _slideAnimation = Tween<Offset>(begin: begin, end: Offset.zero).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+  }
+
+  void _updateOpacityAnimation() {
+    _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
     );
   }
@@ -116,38 +165,40 @@ class _InteractiveModalState extends State<InteractiveModal>
   }
 
   Widget _buildModal(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
+    final screenSize = MediaQuery.of(context).size;
+    final screenHeight = screenSize.height;
+    final screenWidth = screenSize.width;
     final modalHeight = widget.modalHeight ?? screenHeight / 4;
+    final modalWidth = widget.isDraggable ? screenWidth - 20 : double.infinity;
 
     EdgeInsets padding;
     switch (widget.position) {
       case ModalPosition.top:
-        padding = const EdgeInsets.only(left: 10, right: 10, top: 60);
+        padding = const EdgeInsets.only(left: 10, right: 10, top: 5);
         break;
-      case ModalPosition.center:
-        padding = EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: (screenHeight - modalHeight) / 2,
-        );
-        break;
+      // case ModalPosition.center:
+      //   padding = EdgeInsets.symmetric(
+      //     horizontal: 10,
+      //     vertical: (screenHeight - modalHeight) / 2,
+      //   );
+      //   break;
       case ModalPosition.bottom:
         padding = const EdgeInsets.only(left: 10, right: 10, bottom: 20);
         break;
-      case ModalPosition.custom:
-        padding = widget.customPadding ?? const EdgeInsets.all(10);
-        break;
+      // case ModalPosition.custom:
+      //   padding = widget.customPadding ?? const EdgeInsets.all(10);
+      //   break;
     }
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final backgroundColor =
-        widget.modalBackgroundColor ??
+    final backgroundColor = widget.modalBackgroundColor ??
         (isDark ? const Color(0xFF2C2C2C) : Colors.white);
 
     Widget modalWidget = Container(
       height: modalHeight,
+      width: modalWidth,
       decoration: BoxDecoration(
-        boxShadow:
-            widget.boxShadow ??
+        boxShadow: widget.boxShadow ??
             const [
               BoxShadow(
                 color: Colors.grey,
@@ -159,34 +210,57 @@ class _InteractiveModalState extends State<InteractiveModal>
         borderRadius:
             widget.borderRadius ?? const BorderRadius.all(Radius.circular(20)),
       ),
-      child: widget.modalContent,
+      child: widget.isDraggable
+          ? _DragProvider(
+              onDragStart: (details) {
+                setState(() {
+                  _dragStartOffset = details.globalPosition - _dragOffset;
+                });
+              },
+              onDragUpdate: (details) {
+                setState(() {
+                  _dragOffset = details.globalPosition - _dragStartOffset;
+                });
+              },
+              child: widget.modalContent,
+            )
+          : widget.modalContent,
     );
 
     if (widget.animate) {
       modalWidget = SlideTransition(
         position: _slideAnimation,
-        child: modalWidget,
+        child: FadeTransition(
+          opacity: _opacityAnimation,
+          child: modalWidget,
+        ),
       );
     }
 
-    return Positioned.fill(
-      child: Padding(
-        padding: padding,
-        child: Align(alignment: _getAlignment(), child: modalWidget),
-      ),
-    );
+    return widget.isDraggable
+        ? Positioned(
+            left: _dragOffset.dx,
+            top: _dragOffset.dy,
+            child: modalWidget,
+          )
+        : Positioned.fill(
+            child: Padding(
+              padding: padding,
+              child: Align(alignment: _getAlignment(), child: modalWidget),
+            ),
+          );
   }
 
   Alignment _getAlignment() {
     switch (widget.position) {
       case ModalPosition.top:
         return Alignment.topCenter;
-      case ModalPosition.center:
-        return Alignment.center;
+      // case ModalPosition.center:
+      //   return Alignment.center;
       case ModalPosition.bottom:
         return Alignment.bottomCenter;
-      case ModalPosition.custom:
-        return Alignment.center;
+      // case ModalPosition.custom:
+      //   return Alignment.center;
     }
   }
 
@@ -209,6 +283,52 @@ class _InteractiveModalState extends State<InteractiveModal>
           },
         ),
       ],
+    );
+  }
+}
+
+/// Provider that makes drag callbacks available to descendant widgets
+class _DragProvider extends InheritedWidget {
+  final Function(DragStartDetails) onDragStart;
+  final Function(DragUpdateDetails) onDragUpdate;
+
+  const _DragProvider({
+    required this.onDragStart,
+    required this.onDragUpdate,
+    required super.child,
+  });
+
+  static _DragProvider? of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<_DragProvider>();
+  }
+
+  @override
+  bool updateShouldNotify(_DragProvider oldWidget) => false;
+}
+
+/// Widget that makes its child area draggable when inside a draggable InteractiveModal
+class DragHandle extends StatelessWidget {
+  final Widget child;
+
+  const DragHandle({
+    super.key,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final dragProvider = _DragProvider.of(context);
+
+    if (dragProvider == null) {
+      // Not inside a draggable modal, just return the child
+      return child;
+    }
+
+    return GestureDetector(
+      onPanStart: dragProvider.onDragStart,
+      onPanUpdate: dragProvider.onDragUpdate,
+      behavior: HitTestBehavior.opaque,
+      child: child,
     );
   }
 }

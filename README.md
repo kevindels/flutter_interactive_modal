@@ -6,6 +6,7 @@ A Flutter package that allows you to display an interactive modal overlay on top
 
 - 🎯 **Interactive Background**: The background widget remains fully interactive while the modal is displayed
 - 🎨 **Customizable Position**: Place the modal at the top, center, bottom, or custom position
+- 🖐️ **Draggable Modal**: Optionally make the modal draggable to move it anywhere on screen
 - ✨ **Smooth Animations**: Built-in slide animations with customizable duration
 - 🎭 **Theme Support**: Automatically adapts to light and dark themes
 - 📱 **Responsive**: Works seamlessly across different screen sizes
@@ -104,6 +105,65 @@ InteractiveModal(
 )
 ```
 
+### Draggable Modal Example
+
+```dart
+InteractiveModal(
+  controller: _controller,
+  background: MyInteractiveContent(),
+  modalContent: MyModalPanel(),
+  position: ModalPosition.bottom,
+  isDraggable: true, // Enable drag functionality
+  modalHeight: 250,
+)
+```
+
+When `isDraggable` is set to `true`, users can touch and drag the modal to move it anywhere on the screen. This is particularly useful for:
+- Floating control panels
+- Movable toolbars
+- Customizable UI layouts
+- Picture-in-picture style interfaces
+
+#### Controlling Which Area is Draggable
+
+You can use the `DragHandle` widget to specify which part of the modal should be draggable:
+
+```dart
+Widget _buildModalContent() {
+  return Column(
+    children: [
+      // Only this area will be draggable
+      DragHandle(
+        child: Container(
+          padding: EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Icon(Icons.drag_handle),
+              Text('Drag from here'),
+              Spacer(),
+              IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () => controller.hide(),
+              ),
+            ],
+          ),
+        ),
+      ),
+      // This area will be scrollable, not draggable
+      Expanded(
+        child: ListView(
+          children: [
+            // Your scrollable content
+          ],
+        ),
+      ),
+    ],
+  );
+}
+```
+
+Without `DragHandle`, the entire modal will be draggable. With `DragHandle`, only the wrapped widget responds to drag gestures, allowing other parts (like scrollable lists) to work normally.
+
 ## Parameters
 
 ### InteractiveModal
@@ -116,6 +176,7 @@ InteractiveModal(
 | `position` | `ModalPosition` | `ModalPosition.bottom` | Position of the modal on screen |
 | `customPadding` | `EdgeInsets?` | `null` | Custom padding when using `ModalPosition.custom` |
 | `modalHeight` | `double?` | `screen height / 4` | Height of the modal |
+| `isDraggable` | `bool` | `false` | Whether the modal can be dragged around the screen |
 | `animate` | `bool` | `true` | Whether to animate the modal appearance |
 | `animationDuration` | `Duration` | `300ms` | Duration of the animation |
 | `modalBackgroundColor` | `Color?` | `null` | Background color of the modal (auto-adapts to theme if null) |

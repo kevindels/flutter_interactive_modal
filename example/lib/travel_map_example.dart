@@ -164,6 +164,10 @@ class _TravelMapExampleState extends State<TravelMapExample> {
         title: const Text('Travel Map Example'),
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.background,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: InteractiveModal(
         controller: _modalController,

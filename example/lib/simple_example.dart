@@ -3,11 +3,12 @@ import 'package:interactive_modal/interactive_modal.dart';
 
 /// Simple example showing basic usage of InteractiveModal
 void main() {
-  runApp(const SimpleExample());
+  runApp(const SimpleExampleApp());
 }
 
-class SimpleExample extends StatelessWidget {
-  const SimpleExample({super.key});
+/// Standalone app wrapper (only used when running this file directly)
+class SimpleExampleApp extends StatelessWidget {
+  const SimpleExampleApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,7 @@ class SimpleExample extends StatelessWidget {
   }
 }
 
+/// The actual example page
 class SimplePage extends StatefulWidget {
   const SimplePage({super.key});
 
@@ -46,13 +48,16 @@ class _SimplePageState extends State<SimplePage> {
       appBar: AppBar(
         title: const Text('Simple Interactive Modal'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: InteractiveModal(
-        controller: _controller,
-        background: _buildBackground(),
-        modalContent: _buildModalContent(),
-        position: ModalPosition.bottom,
-      ),
+          controller: _controller,
+          background: _buildBackground(),
+          modalContent: _buildModalContent(),
+          position: ModalPosition.top),
       floatingActionButton: AnimatedBuilder(
         animation: _controller,
         builder: (context, child) {

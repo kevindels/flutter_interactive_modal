@@ -1,3 +1,4 @@
+import 'package:example/draggable_example.dart';
 import 'package:flutter/material.dart';
 import 'travel_map_example.dart';
 import 'simple_example.dart';
@@ -81,56 +82,86 @@ class HomePage extends StatelessWidget {
               // Examples Grid
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildExampleCard(
-                        context,
-                        title: 'Simple Example',
-                        description:
-                            'Basic interaction with modal and simultaneous background',
-                        icon: Icons.touch_app_rounded,
-                        gradient: LinearGradient(
-                          colors: [
-                            const Color(0xFF66A5AD),
-                            const Color(0xFF66A5AD).withValues(alpha: 0.7),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: ListView(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildExampleCard(
+                              context,
+                              title: 'Simple Example',
+                              description:
+                                  'Basic interaction with modal and simultaneous background',
+                              icon: Icons.touch_app_rounded,
+                              gradient: LinearGradient(
+                                colors: [
+                                  const Color(0xFF66A5AD),
+                                  const Color(0xFF66A5AD)
+                                      .withValues(alpha: 0.7),
+                                ],
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const SimplePage(),
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 24),
+                            _buildExampleCard(
+                              context,
+                              title: 'Travel Map',
+                              description:
+                                  'Visualize an animated route with interactive controls',
+                              icon: Icons.map_rounded,
+                              gradient: LinearGradient(
+                                colors: [
+                                  const Color(0xFF66A5AD),
+                                  const Color(0xFF66A5AD)
+                                      .withValues(alpha: 0.7),
+                                ],
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const TravelMapExample(),
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 24),
+                            _buildExampleCard(
+                              context,
+                              title: 'Draggable Modal',
+                              description:
+                                  'Move the modal around while keeping background interactive',
+                              icon: Icons.open_with_rounded,
+                              gradient: LinearGradient(
+                                colors: [
+                                  const Color(0xFF66A5AD),
+                                  const Color(0xFF66A5AD)
+                                      .withValues(alpha: 0.7),
+                                ],
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DraggableExample(),
+                                  ),
+                                );
+                              },
+                            ),
                           ],
                         ),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SimplePage(),
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 24),
-                      _buildExampleCard(
-                        context,
-                        title: 'Travel Map',
-                        description:
-                            'Visualize an animated route with interactive controls',
-                        icon: Icons.map_rounded,
-                        gradient: LinearGradient(
-                          colors: [
-                            const Color(0xFF66A5AD),
-                            const Color(0xFF66A5AD).withValues(alpha: 0.7),
-                          ],
-                        ),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const TravelMapExample(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+                      ],
+                    )),
               ),
               const SizedBox(height: 40),
             ],

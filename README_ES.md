@@ -6,6 +6,7 @@ Un paquete Flutter que permite mostrar un modal interactivo sobre contenido de f
 
 - **Fondo Interactivo**: El widget de fondo permanece completamente funcional mientras el modal está visible
 - **Posicionamiento Flexible**: Coloca el modal arriba, centro, abajo o en posición personalizada
+- **Modal Arrastrable**: Opcionalmente permite arrastrar el modal para moverlo por toda la pantalla
 - **Animaciones Suaves**: Transiciones animadas integradas con duración personalizable
 - **Soporte de Temas**: Se adapta automáticamente a temas claro y oscuro
 - **Responsive**: Funciona perfectamente en diferentes tamaños de pantalla
@@ -148,6 +149,9 @@ InteractiveModal(
   // Dimensiones
   modalHeight: 300,
   
+  // Funcionalidad de arrastre
+  isDraggable: true,  // Permite arrastrar el modal
+  
   // Animación
   animate: true,
   animationDuration: Duration(milliseconds: 400),
@@ -164,6 +168,55 @@ InteractiveModal(
   ],
 )
 ```
+
+### 🖐️ Modal Arrastrable
+
+Cuando `isDraggable` está en `true`, los usuarios pueden tocar y arrastrar el modal para moverlo a cualquier parte de la pantalla. Esto es particularmente útil para:
+
+- Paneles de control flotantes
+- Barras de herramientas movibles
+- Diseños de UI personalizables
+- Interfaces estilo picture-in-picture
+
+#### Controlar Qué Área es Arrastrable
+
+Puedes usar el widget `DragHandle` para especificar qué parte del modal debe ser arrastrable:
+
+```dart
+Widget _buildModalContent() {
+  return Column(
+    children: [
+      // Solo esta área será arrastrable
+      DragHandle(
+        child: Container(
+          padding: EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Icon(Icons.drag_handle),
+              Text('Arrastra desde aquí'),
+              Spacer(),
+              IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () => controller.hide(),
+              ),
+            ],
+          ),
+        ),
+      ),
+      // Esta área será desplazable, no arrastrable
+      Expanded(
+        child: ListView(
+          children: [
+            // Tu contenido desplazable
+          ],
+        ),
+      ),
+    ],
+  );
+}
+```
+
+Sin `DragHandle`, todo el modal será arrastrable. Con `DragHandle`, solo el widget envuelto responde a los gestos de arrastre, permitiendo que otras partes (como listas desplazables) funcionen normalmente.
 
 ## 📱 Plataformas Soportadas
 
