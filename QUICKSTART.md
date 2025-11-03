@@ -1,5 +1,13 @@
 # Interactive Modal Package - Quick Start Guide
 
+<div align="center">
+
+![Interactive Modal Demo](screenshots/interactive_video.gif)
+
+*Modal interactivo en acción - Interactúa con ambos elementos simultáneamente*
+
+</div>
+
 ## 📦 Instalación Inicial
 
 Después de crear el paquete, necesitas instalar las dependencias:
@@ -12,6 +20,20 @@ flutter pub get
 ## 🚀 Ejecutar el Ejemplo
 
 El paquete incluye tres ejemplos completos que demuestran diferentes características:
+
+<div align="center">
+
+### Vista Previa de los Ejemplos
+
+| Página Principal | Ejemplo Simple |
+|------------------|----------------|
+| ![Main](screenshots/image_main.png) | ![Simple](screenshots/image_simple.png) |
+
+| Travel Map | Modal Arrastrable |
+|------------|-------------------|
+| ![Map](screenshots/image_map.png) | ![Draggable](screenshots/image_drag.png) |
+
+</div>
 
 ### Ejecutar Todos los Ejemplos (Recomendado)
 

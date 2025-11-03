@@ -1,6 +1,19 @@
 # Interactive Modal - Paquete Flutter
 
+<div align="center">
+
+![Demo de Interactive Modal](screenshots/interactive_video.gif)
+
+</div>
+
 Un paquete Flutter que permite mostrar un modal interactivo sobre contenido de fondo, manteniendo la capacidad de interactuar con ambos simultáneamente.
+
+<div align="center">
+
+[![pub package](https://img.shields.io/pub/v/interactive_modal.svg)](https://pub.dev/packages/interactive_modal)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+</div>
 
 ## 🌟 Características Principales
 
@@ -92,6 +105,18 @@ class _MiPaginaState extends State<MiPagina> {
 ## 🎯 Ejemplos Completos
 
 El paquete incluye tres ejemplos completos que demuestran diferentes casos de uso:
+
+<div align="center">
+
+| Menú Principal | Ejemplo Simple | Travel Map |
+|----------------|----------------|------------|
+| ![Menú Principal](screenshots/image_main.png) | ![Ejemplo Simple](screenshots/image_simple.png) | ![Travel Map](screenshots/image_map.png) |
+
+| Modal Arrastrable |
+|-------------------|
+| ![Modal Arrastrable](screenshots/image_drag.png) |
+
+</div>
 
 ### 1. Ejemplo Simple ([simple_example.dart](example/lib/simple_example.dart))
 Implementación básica que muestra:

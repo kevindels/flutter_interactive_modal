@@ -1,5 +1,13 @@
 # 🎉 ¡Proyecto Completado!
 
+<div align="center">
+
+![Interactive Modal Demo](screenshots/interactive_video.gif)
+
+*Modal Interactivo - Ambos elementos permanecen funcionales simultáneamente*
+
+</div>
+
 ## 📦 Paquete Interactive Modal - Resumen
 
 Has creado exitosamente un paquete Flutter completo y listo para publicar en pub.dev.

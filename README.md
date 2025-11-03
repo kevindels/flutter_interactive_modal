@@ -1,6 +1,19 @@
 # Interactive Modal
 
+<div align="center">
+
+![Interactive Modal Demo](screenshots/interactive_video.gif)
+
+</div>
+
 A Flutter package that allows you to display an interactive modal overlay on top of other widgets while maintaining interaction with both the modal and background content.
+
+<div align="center">
+
+[![pub package](https://img.shields.io/pub/v/interactive_modal.svg)](https://pub.dev/packages/interactive_modal)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+</div>
 
 ## Features
 
@@ -216,6 +229,18 @@ controller.addListener(() {
 ## Complete Examples
 
 The package includes three comprehensive examples demonstrating different use cases:
+
+<div align="center">
+
+| Main Menu | Simple Example | Travel Map |
+|-----------|----------------|------------|
+| ![Main Menu](screenshots/image_main.png) | ![Simple Example](screenshots/image_simple.png) | ![Travel Map](screenshots/image_map.png) |
+
+| Draggable Modal |
+|-----------------|
+| ![Draggable Modal](screenshots/image_drag.png) |
+
+</div>
 
 ### 1. Simple Example ([simple_example.dart](example/lib/simple_example.dart))
 A basic implementation showing:

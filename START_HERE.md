@@ -1,5 +1,11 @@
 # 🎉 ¡Bienvenido a Interactive Modal!
 
+<div align="center">
+
+![Interactive Modal Demo](screenshots/interactive_video.gif)
+
+</div>
+
 ## 🚀 ¡Tu paquete está listo!
 
 Has creado exitosamente un paquete Flutter completo basado en la funcionalidad de `modalPlayLiveTravels()` de tu proyecto original.
@@ -26,6 +32,14 @@ flutter run
 ### 3️⃣ ¡Ver la Magia! ✨
 
 La aplicación mostrará una página principal con tres ejemplos:
+
+<div align="center">
+
+| Menú Principal | Simple | Travel Map | Draggable |
+|----------------|--------|------------|-----------|
+| ![Main](screenshots/image_main.png) | ![Simple](screenshots/image_simple.png) | ![Map](screenshots/image_map.png) | ![Drag](screenshots/image_drag.png) |
+
+</div>
 
 1. **Ejemplo Simple**: Demuestra la interacción simultánea básica
    - Contadores independientes en fondo y modal
