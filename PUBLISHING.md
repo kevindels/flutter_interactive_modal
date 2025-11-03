@@ -11,9 +11,9 @@ Edit `pubspec.yaml`:
 name: interactive_modal
 description: A Flutter package for displaying interactive modals over background content while maintaining full interactivity with both.
 version: 0.0.1
-homepage: https://github.com/yourusername/interactive_modal
-repository: https://github.com/yourusername/interactive_modal
-issue_tracker: https://github.com/yourusername/interactive_modal/issues
+homepage: https://github.com/kevindels/interactive_modal
+repository: https://github.com/kevindels/interactive_modal
+issue_tracker: https://github.com/kevindels/interactive_modal/issues
 ```
 
 ### 2. Verify Package Structure

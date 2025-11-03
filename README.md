@@ -188,9 +188,7 @@ Without `DragHandle`, the entire modal will be draggable. With `DragHandle`, onl
 ```dart
 enum ModalPosition {
   top,      // Modal appears at the top
-  center,   // Modal appears in the center
   bottom,   // Modal appears at the bottom
-  custom,   // Use customPadding for positioning
 }
 ```
 
@@ -215,15 +213,41 @@ controller.addListener(() {
 });
 ```
 
-## Complete Example: Travel Map with Animated Controls
+## Complete Examples
 
-See the [example](example/lib/main.dart) folder for a complete implementation that demonstrates:
+The package includes three comprehensive examples demonstrating different use cases:
 
+### 1. Simple Example ([simple_example.dart](example/lib/simple_example.dart))
+A basic implementation showing:
+- Interactive background with counter
+- Modal with independent counter
+- Simultaneous interaction with both elements
+- Basic show/hide controls
+
+### 2. Travel Map Example ([travel_map_example.dart](example/lib/travel_map_example.dart))
+An advanced implementation demonstrating:
 - Interactive map background that can be panned and zoomed
 - Modal with playback controls (play/pause, speed selector, slider)
 - List of travel points with auto-scroll
 - Synchronization between modal controls and map markers
 - Real-time animation of travel route
+
+### 3. Draggable Modal Example ([draggable_example.dart](example/lib/draggable_example.dart))
+Shows the draggable functionality with:
+- Modal that can be dragged anywhere on screen
+- Toggle between draggable and fixed modes
+- Configurable initial position (top/bottom)
+- Interactive background settings panel
+
+To run the examples:
+
+```bash
+cd example
+flutter pub get
+flutter run
+```
+
+The app will show a home page where you can select which example to explore.
 
 ## Real-World Use Cases
 

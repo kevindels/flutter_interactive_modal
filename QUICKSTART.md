@@ -5,13 +5,15 @@
 Después de crear el paquete, necesitas instalar las dependencias:
 
 ```bash
-cd /Users/kevinlandaetaacosta/Documents/facilwwwpro/v3/interactive_modal
+cd /$HOME/$interactive_modal
 flutter pub get
 ```
 
 ## 🚀 Ejecutar el Ejemplo
 
-### Ejemplo Completo (Travel Map)
+El paquete incluye tres ejemplos completos que demuestran diferentes características:
+
+### Ejecutar Todos los Ejemplos (Recomendado)
 
 ```bash
 cd example
@@ -19,23 +21,33 @@ flutter pub get
 flutter run
 ```
 
-Este ejemplo muestra:
+Esto abrirá una aplicación con una página principal donde puedes seleccionar entre:
+
+1. **Ejemplo Simple** - Demostración básica de interacción simultánea
+2. **Travel Map** - Mapa interactivo con controles de animación avanzados
+3. **Modal Arrastrable** - Modal que se puede mover por toda la pantalla
+
+### Ejemplos Incluidos
+
+#### 1. Ejemplo Simple
+- Ubicación: `example/lib/simple_example.dart`
+- Muestra la funcionalidad básica
+- Contadores independientes en fondo y modal
+- Perfecto para entender el concepto
+
+#### 2. Travel Map (Complejo)
+- Ubicación: `example/lib/travel_map_example.dart`
 - Un mapa interactivo simulado que puedes mover con gestos
-- Modal con controles de animación (play/pause, velocidad, slider)
+- Modal con controles de reproducción
 - Lista de puntos de viaje con auto-scroll sincronizado
 - Animación de recorrido en tiempo real
 
-### Ejemplo Simple
-
-Para ver el ejemplo simple, modifica `example/lib/main.dart` y cambia:
-
-```dart
-import 'simple_example.dart' as simple;
-
-void main() {
-  simple.main();
-}
-```
+#### 3. Modal Arrastrable
+- Ubicación: `example/lib/draggable_example.dart`
+- Modal que puede arrastrarse a cualquier posición
+- Toggle para activar/desactivar el arrastre
+- Selector de posición inicial
+- **Lo importante: ¡puedes usar el modal y el fondo al mismo tiempo!**
 
 ## 🧪 Ejecutar Tests
 
@@ -80,9 +92,7 @@ bool visible = controller.isVisible;
 ```dart
 enum ModalPosition {
   top,      // Arriba
-  center,   // Centro
   bottom,   // Abajo (por defecto)
-  custom,   // Personalizado con customPadding
 }
 ```
 
@@ -111,8 +121,10 @@ interactive_modal/
 │       └── interactive_modal_controller.dart # Controlador
 ├── example/
 │   ├── lib/
-│   │   ├── main.dart                       # Ejemplo completo (travel map)
-│   │   └── simple_example.dart             # Ejemplo básico
+│   │   ├── main.dart                       # Página principal con selector de ejemplos
+│   │   ├── simple_example.dart             # Ejemplo básico
+│   │   ├── travel_map_example.dart         # Ejemplo completo (travel map)
+│   │   └── draggable_example.dart          # Ejemplo de modal arrastrable
 │   ├── pubspec.yaml
 │   └── README.md
 ├── test/

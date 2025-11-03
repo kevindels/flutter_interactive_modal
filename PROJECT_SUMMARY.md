@@ -23,7 +23,21 @@ Has creado exitosamente un paquete Flutter completo y listo para publicar en pub
 
 ### 2. **Ejemplos Completos** (`example/`)
 
-#### Ejemplo Principal (Travel Map):
+La aplicación de ejemplo incluye una página principal con tres ejemplos interactivos:
+
+#### Página Principal (HomePage):
+- Interfaz visual atractiva con gradientes
+- Tres tarjetas de ejemplo con descripciones
+- Navegación fácil a cada ejemplo
+- Diseño moderno con Material 3
+
+#### Ejemplo Simple:
+- Demostración básica del concepto
+- Contadores independientes
+- Fácil de entender
+- Perfecto para principiantes
+
+#### Ejemplo Travel Map:
 - Mapa interactivo simulado
 - Controles de reproducción animados
 - Selector de velocidad (0.5x a 8x)
@@ -31,10 +45,13 @@ Has creado exitosamente un paquete Flutter completo y listo para publicar en pub
 - Lista de puntos de viaje con auto-scroll
 - Sincronización entre modal y mapa
 
-#### Ejemplo Simple:
-- Demostración básica del concepto
-- Contadores independientes
-- Fácil de entender
+#### Ejemplo Modal Arrastrable:
+- Modal que se puede arrastrar por toda la pantalla
+- Widget `DragHandle` para controlar área de arrastre
+- Toggle para activar/desactivar arrastre
+- Selector de posición inicial (arriba/abajo)
+- Panel de configuración interactivo
+- Demuestra uso de contenido desplazable dentro del modal
 
 ### 3. **Tests** (`test/`)
 
@@ -67,7 +84,7 @@ Has creado exitosamente un paquete Flutter completo y listo para publicar en pub
 ### Paso 1: Instalar Dependencias
 
 ```bash
-cd /Users/kevinlandaetaacosta/Documents/facilwwwpro/v3/interactive_modal
+cd /$HOME/interactive_modal
 flutter pub get
 cd example
 flutter pub get
@@ -145,8 +162,8 @@ La característica única de este paquete es que **AMBOS** widgets (fondo y moda
 ```dart
 InteractiveModal(
   controller: controller,
-  background: InteractiveMapWidget(),  // ← Se puede usar
-  modalContent: PlaybackControls(),    // ← También se puede usar
+  background: MyInteractiveMap(),    // ← Se puede usar
+  modalContent: PlaybackControls(),   // ← También se puede usar
 )
 ```
 
@@ -155,20 +172,48 @@ InteractiveModal(
 ```dart
 enum ModalPosition {
   top,      // Arriba
-  center,   // Centro
   bottom,   // Abajo (por defecto)
-  custom,   // Personalizado
 }
 ```
 
-### 3. Sin Dependencias Externas
+### 3. Modal Arrastrable (Nuevo)
+
+El modal puede moverse libremente por la pantalla:
+
+```dart
+InteractiveModal(
+  controller: controller,
+  isDraggable: true,  // Habilita arrastre
+  modalContent: MyContent(),
+)
+```
+
+Usa el widget `DragHandle` para controlar qué área es arrastrable:
+
+```dart
+Column(
+  children: [
+    DragHandle(  // Solo esta área se puede arrastrar
+      child: Container(
+        padding: EdgeInsets.all(16),
+        child: Text('Arrastra desde aquí'),
+      ),
+    ),
+    Expanded(
+      child: ListView(...),  // Esta área es desplazable, no arrastrable
+    ),
+  ],
+)
+```
+
+### 4. Sin Dependencias Externas
 
 - ❌ No usa GetX
 - ❌ No usa Provider
 - ❌ No usa Riverpod
 - ✅ Solo Flutter estándar
 
-### 4. Animaciones Suaves
+### 5. Animaciones Suaves
 
 - SlideTransition integrada
 - Duración personalizable
@@ -182,9 +227,7 @@ enum ModalPosition {
 |------|-------------|
 | **Mapas GPS** | Controles sobre mapa interactivo (tu caso original) |
 | **Video Player** | Controles de reproducción sobre video |
-| **Image Editor** | Herramientas sobre imagen que se puede mover/zoom |
 | **Data Viz** | Filtros sobre gráficos interactivos |
-| **Gaming** | UI sobre canvas de juego |
 | **CAD Apps** | Controles sobre lienzo de dibujo |
 
 ---
@@ -222,22 +265,20 @@ interactive_modal/
 │       └── interactive_modal_controller.dart  # ← Controlador
 ├── example/
 │   ├── lib/
-│   │   ├── main.dart                   # ← Ejemplo completo
-│   │   └── simple_example.dart         # ← Ejemplo simple
+│   │   ├── main.dart                   # ← Página principal con selector de ejemplos
+│   │   ├── simple_example.dart         # ← Ejemplo simple
+│   │   ├── travel_map_example.dart     # ← Ejemplo completo
+│   │   └── draggable_example.dart      # ← Ejemplo de arrastre
 │   ├── pubspec.yaml
 │   └── README.md
 ├── test/
 │   └── interactive_modal_test.dart     # ← Tests unitarios
+├── pubspec.yaml                        # ← Configuración del paquete
+├── README.md                           # ← Docs principales (inglés)
+├── README_ES.md                        # ← Docs en español
 ├── CHANGELOG.md                        # ← Historial de versiones
-├── COMPARISON.md                       # ← vs código original
-├── LICENSE                             # ← MIT License
-├── PUBLISHING.md                       # ← Guía de publicación
-├── QUICKSTART.md                       # ← Inicio rápido
-├── README.md                           # ← Documentación principal
-├── README_ES.md                        # ← Documentación en español
-├── analysis_options.yaml               # ← Configuración lints
-├── helper.sh                           # ← Script de ayuda
-└── pubspec.yaml                        # ← Configuración del paquete
+└── LICENSE                             # ← MIT License
+```
 ```
 
 ---
@@ -339,7 +380,7 @@ Has creado un paquete Flutter completo y profesional. Este paquete:
 ## 🚀 Comando Rápido para Empezar
 
 ```bash
-cd /Users/kevinlandaetaacosta/Documents/facilwwwpro/v3/interactive_modal
+cd /$HOME/interactive_modal
 ./helper.sh
 ```
 

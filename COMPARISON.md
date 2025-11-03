@@ -203,16 +203,34 @@ test('controller shows modal', () {
 ### 3. Flexibilidad
 ```dart
 // Antes: Solo bottom position, altura fija
-// Ahora: top, center, bottom, custom, altura variable
+// Ahora: top, bottom, altura variable, arrastrable
 
 InteractiveModal(
-  position: ModalPosition.top,    // o center, bottom, custom
+  position: ModalPosition.top,    // o bottom
   modalHeight: 500,               // cualquier altura
-  customPadding: EdgeInsets.only(top: 100),
+  isDraggable: true,              // permite mover el modal
 )
 ```
 
-### 4. Mantenibilidad
+### 4. Nueva Funcionalidad: Modal Arrastrable
+```dart
+// Antes: Modal fijo en posición
+// Ahora: Modal movible por toda la pantalla
+
+InteractiveModal(
+  isDraggable: true,
+  modalContent: Column(
+    children: [
+      DragHandle(  // Control fino del área de arrastre
+        child: Container(child: Text('Arrastra aquí')),
+      ),
+      Expanded(child: ListView(...)),  // Área desplazable
+    ],
+  ),
+)
+```
+
+### 5. Mantenibilidad
 ```dart
 // Antes: 400+ líneas en un archivo
 // Ahora: Separado en módulos pequeños y enfocados
@@ -253,13 +271,24 @@ InteractiveModal(
 )
 ```
 
+#### Floating Controls (Draggable)
+```dart
+InteractiveModal(
+  controller: controller,
+  background: GameCanvas(),
+  modalContent: GameControls(),
+  isDraggable: true,  // Usuario puede mover los controles
+  modalHeight: 200,
+)
+```
+
 #### Dashboard
 ```dart
 InteractiveModal(
   controller: controller,
   background: DataChart(),
   modalContent: Filters(),
-  position: ModalPosition.center,
+  position: ModalPosition.bottom,
 )
 ```
 
@@ -315,15 +344,18 @@ InteractiveModal(
   background: FmapsMainMap(...),
   modalContent: TravelPlaybackControls(),
   position: ModalPosition.bottom,
+  isDraggable: true,  // Opcional: permitir mover los controles
 )
 ```
 
 ### Para el Paquete:
-1. Soporte para múltiples modales simultáneos
-2. Gestos de arrastrar para redimensionar
-3. Transiciones personalizadas
-4. Callbacks de eventos (onShow, onHide)
-5. Soporte para teclado y accesibilidad
+1. ✅ **Modal arrastrable** (implementado)
+2. ✅ **Widget DragHandle** para control fino (implementado)
+3. Soporte para múltiples modales simultáneos
+4. Gestos de arrastrar para redimensionar
+5. Transiciones personalizadas adicionales
+6. Callbacks de eventos (onShow, onHide, onDragStart, onDragEnd)
+7. Soporte mejorado para teclado y accesibilidad
 
 ---
 

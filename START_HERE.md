@@ -11,7 +11,7 @@ Has creado exitosamente un paquete Flutter completo basado en la funcionalidad d
 ### 1️⃣ Instalar Dependencias
 
 ```bash
-cd /Users/kevinlandaetaacosta/Documents/facilwwwpro/v3/interactive_modal
+cd /$HOME/$interactive_modal
 flutter pub get
 cd example
 flutter pub get
@@ -25,11 +25,23 @@ flutter run
 
 ### 3️⃣ ¡Ver la Magia! ✨
 
-El ejemplo te mostrará:
-- Un mapa interactivo simulado (puedes hacer pan y zoom)
-- Un modal con controles de reproducción
-- Sincronización entre el mapa y los controles
-- **Lo más importante: ¡puedes usar ambos al mismo tiempo!**
+La aplicación mostrará una página principal con tres ejemplos:
+
+1. **Ejemplo Simple**: Demuestra la interacción simultánea básica
+   - Contadores independientes en fondo y modal
+   - Fácil de entender
+
+2. **Travel Map**: Muestra capacidades avanzadas
+   - Mapa interactivo simulado (puedes hacer pan y zoom)
+   - Modal con controles de reproducción
+   - Sincronización entre el mapa y los controles
+
+3. **Modal Arrastrable**: Nueva funcionalidad
+   - Modal que se puede mover por toda la pantalla
+   - Toggle para activar/desactivar arrastre
+   - Demuestra el widget `DragHandle`
+
+**Lo más importante: ¡puedes usar el fondo y el modal al mismo tiempo en todos los ejemplos!**
 
 ---
 
@@ -44,12 +56,17 @@ El ejemplo te mostrará:
 
 2. **InteractiveModalController**
    - Control simple: `show()`, `hide()`, `toggle()`
-   - Sin GetX, usa Flutter estándar
    - Fácil de integrar en cualquier app
 
-3. **Ejemplos Completos**
-   - Travel Map (similar a tu código original)
-   - Simple Example (demostración básica)
+3. **Modal Arrastrable (Nuevo)**
+   - Mueve el modal por toda la pantalla
+   - Widget `DragHandle` para control fino
+   - Combina arrastre con contenido desplazable
+
+4. **Tres Ejemplos Completos**
+   - Simple: Demostración básica
+   - Travel Map: Similar a tu código original con mapa
+   - Draggable: Muestra funcionalidad de arrastre
 
 ### 📚 Documentación
 
@@ -96,15 +113,26 @@ final controller = InteractiveModalController();
 // 2. Usar el widget
 InteractiveModal(
   controller: controller,
-  background: MiMapaOWidget(),    // Tu widget de fondo
-  modalContent: MisControles(),   // Tu modal
+  background: MyInteractiveMap(),
+  modalContent: MyControls(),
   position: ModalPosition.bottom,
+  isDraggable: false,  // true para permitir arrastrar
 )
 
 // 3. Controlar el modal
 controller.show();   // Mostrar
 controller.hide();   // Ocultar
 controller.toggle(); // Alternar
+
+// 4. Usar DragHandle (si isDraggable = true)
+Column(
+  children: [
+    DragHandle(  // Solo esta área se puede arrastrar
+      child: Container(child: Text('Arrastra aquí')),
+    ),
+    Expanded(child: ListView(...)),  // Área desplazable
+  ],
+)
 ```
 
 ---
@@ -190,10 +218,12 @@ flutter run
 
 ### Quiero cambiar algo del código
 **Archivos principales:**
-- `lib/src/interactive_modal.dart` - Widget principal
+- `lib/src/interactive_modal.dart` - Widget principal con lógica de arrastre
 - `lib/src/interactive_modal_controller.dart` - Controlador
-- `example/lib/main.dart` - Ejemplo complejo
+- `example/lib/main.dart` - Página principal con selector
 - `example/lib/simple_example.dart` - Ejemplo simple
+- `example/lib/travel_map_example.dart` - Ejemplo complejo
+- `example/lib/draggable_example.dart` - Ejemplo de arrastre
 
 ---
 
@@ -208,13 +238,17 @@ flutter run
 
 ### Paso 2: Revisar Código (10 minutos)
 - Abre `lib/src/interactive_modal.dart`
-- Abre `example/lib/main.dart`
+- Revisa la lógica de arrastre con `DragHandle`
+- Abre `example/lib/main.dart` para ver la página principal
+- Abre `example/lib/draggable_example.dart` para ver el nuevo ejemplo
 - Compara con tu código original
 
 ### Paso 3: Personalizar (opcional)
-- Modifica colores en el ejemplo
+- Modifica colores en los ejemplos
 - Cambia posiciones del modal
 - Ajusta animaciones
+- Prueba diferentes configuraciones de `isDraggable`
+- Experimenta con `DragHandle` en diferentes áreas
 
 ### Paso 4: Integrar en Tu App (opcional)
 - Copia el concepto a tu proyecto

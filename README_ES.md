@@ -89,24 +89,41 @@ class _MiPaginaState extends State<MiPagina> {
 - **[COMPARISON.md](COMPARISON.md)** - Comparación con código original
 - **[example/](example/)** - Ejemplos funcionales
 
-## 🎯 Ejemplo Completo
+## 🎯 Ejemplos Completos
 
-El proyecto incluye un ejemplo completo que simula una aplicación de seguimiento GPS con:
+El paquete incluye tres ejemplos completos que demuestran diferentes casos de uso:
 
+### 1. Ejemplo Simple ([simple_example.dart](example/lib/simple_example.dart))
+Implementación básica que muestra:
+- Fondo interactivo con contador
+- Modal con contador independiente
+- Interacción simultánea con ambos elementos
+- Controles básicos de mostrar/ocultar
+
+### 2. Ejemplo Travel Map ([travel_map_example.dart](example/lib/travel_map_example.dart))
+Implementación avanzada con:
 - Mapa interactivo (pan y zoom)
-- Controles de reproducción animados
-- Selector de velocidad (0.5x - 8x)
-- Slider de progreso
-- Lista sincronizada con auto-scroll
-- Puntos de viaje con alarmas
+- Controles de reproducción animados (play/pause, selector de velocidad, slider)
+- Lista de puntos de viaje con auto-scroll
+- Sincronización entre controles del modal y marcadores del mapa
+- Animación en tiempo real de ruta de viaje
 
-Para ejecutar el ejemplo:
+### 3. Ejemplo Modal Arrastrable ([draggable_example.dart](example/lib/draggable_example.dart))
+Muestra la funcionalidad de arrastre con:
+- Modal que se puede arrastrar a cualquier parte de la pantalla
+- Alternancia entre modos arrastrable y fijo
+- Posición inicial configurable (arriba/abajo)
+- Panel de configuración interactivo en el fondo
+
+Para ejecutar los ejemplos:
 
 ```bash
 cd example
 flutter pub get
 flutter run
 ```
+
+La aplicación mostrará una página principal donde puedes seleccionar qué ejemplo explorar.
 
 ## 🔧 API del Controlador
 
