@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Demo de Interactive Modal](screenshots/interactive_video.gif)
+<img src="screenshots/interactive_video.gif" alt="Demo de Interactive Modal" width="300"/>
 
 </div>
 
@@ -110,11 +110,11 @@ El paquete incluye tres ejemplos completos que demuestran diferentes casos de us
 
 | Menú Principal | Ejemplo Simple | Travel Map |
 |----------------|----------------|------------|
-| ![Menú Principal](screenshots/image_main.png) | ![Ejemplo Simple](screenshots/image_simple.png) | ![Travel Map](screenshots/image_map.png) |
+| <img src="screenshots/image_main.png" alt="Menú Principal" width="250"/> | <img src="screenshots/image_simple.png" alt="Ejemplo Simple" width="250"/> | <img src="screenshots/image_map.png" alt="Travel Map" width="250"/> |
 
 | Modal Arrastrable |
 |-------------------|
-| ![Modal Arrastrable](screenshots/image_drag.png) |
+| <img src="screenshots/image_drag.png" alt="Modal Arrastrable" width="250"/> |
 
 </div>
 

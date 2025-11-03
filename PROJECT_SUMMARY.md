@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Interactive Modal Demo](screenshots/interactive_video.gif)
+<img src="screenshots/interactive_video.gif" alt="Interactive Modal Demo" width="300"/>
 
 *Modal Interactivo - Ambos elementos permanecen funcionales simultáneamente*
 

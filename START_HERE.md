@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Interactive Modal Demo](screenshots/interactive_video.gif)
+<img src="screenshots/interactive_video.gif" alt="Interactive Modal Demo" width="300"/>
 
 </div>
 
@@ -37,7 +37,7 @@ La aplicación mostrará una página principal con tres ejemplos:
 
 | Menú Principal | Simple | Travel Map | Draggable |
 |----------------|--------|------------|-----------|
-| ![Main](screenshots/image_main.png) | ![Simple](screenshots/image_simple.png) | ![Map](screenshots/image_map.png) | ![Drag](screenshots/image_drag.png) |
+| <img src="screenshots/image_main.png" alt="Main" width="180"/> | <img src="screenshots/image_simple.png" alt="Simple" width="180"/> | <img src="screenshots/image_map.png" alt="Map" width="180"/> | <img src="screenshots/image_drag.png" alt="Drag" width="180"/> |
 
 </div>
 

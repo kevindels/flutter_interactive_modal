@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Interactive Modal Demo](screenshots/interactive_video.gif)
+<img src="screenshots/interactive_video.gif" alt="Interactive Modal Demo" width="300"/>
 
 *Modal interactivo en acción - Interactúa con ambos elementos simultáneamente*
 
@@ -27,11 +27,11 @@ El paquete incluye tres ejemplos completos que demuestran diferentes caracterís
 
 | Página Principal | Ejemplo Simple |
 |------------------|----------------|
-| ![Main](screenshots/image_main.png) | ![Simple](screenshots/image_simple.png) |
+| <img src="screenshots/image_main.png" alt="Main" width="280"/> | <img src="screenshots/image_simple.png" alt="Simple" width="280"/> |
 
 | Travel Map | Modal Arrastrable |
 |------------|-------------------|
-| ![Map](screenshots/image_map.png) | ![Draggable](screenshots/image_drag.png) |
+| <img src="screenshots/image_map.png" alt="Map" width="280"/> | <img src="screenshots/image_drag.png" alt="Draggable" width="280"/> |
 
 </div>
 

@@ -4,7 +4,11 @@ This document provides a visual overview of all the examples included in the Int
 
 ## 🎬 Demo Video
 
-![Interactive Modal in Action](screenshots/interactive_video.gif)
+<div align="center">
+
+<img src="screenshots/interactive_video.gif" alt="Interactive Modal in Action" width="350"/>
+
+</div>
 
 The animated demo shows the core feature of the package: **simultaneous interaction** with both the modal and background content.
 
@@ -14,7 +18,11 @@ The animated demo shows the core feature of the package: **simultaneous interact
 
 ### 1. Main Menu
 
-![Main Menu](screenshots/image_main.png)
+<div align="center">
+
+<img src="screenshots/image_main.png" alt="Main Menu" width="300"/>
+
+</div>
 
 **Features Shown:**
 - Modern Material 3 design
@@ -26,7 +34,11 @@ The animated demo shows the core feature of the package: **simultaneous interact
 
 ### 2. Simple Example
 
-![Simple Example](screenshots/image_simple.png)
+<div align="center">
+
+<img src="screenshots/image_simple.png" alt="Simple Example" width="300"/>
+
+</div>
 
 **Features Shown:**
 - Basic interactive modal usage
@@ -44,7 +56,11 @@ The animated demo shows the core feature of the package: **simultaneous interact
 
 ### 3. Travel Map Example
 
-![Travel Map Example](screenshots/image_map.png)
+<div align="center">
+
+<img src="screenshots/image_map.png" alt="Travel Map Example" width="300"/>
+
+</div>
 
 **Features Shown:**
 - Interactive map with zoom controls
@@ -65,7 +81,11 @@ The animated demo shows the core feature of the package: **simultaneous interact
 
 ### 4. Draggable Modal Example
 
-![Draggable Modal Example](screenshots/image_drag.png)
+<div align="center">
+
+<img src="screenshots/image_drag.png" alt="Draggable Modal Example" width="300"/>
+
+</div>
 
 **Features Shown:**
 - Draggable modal functionality

@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Interactive Modal Demo](screenshots/interactive_video.gif)
+<img src="screenshots/interactive_video.gif" alt="Interactive Modal Demo" width="300"/>
 
 </div>
 
@@ -234,11 +234,11 @@ The package includes three comprehensive examples demonstrating different use ca
 
 | Main Menu | Simple Example | Travel Map |
 |-----------|----------------|------------|
-| ![Main Menu](screenshots/image_main.png) | ![Simple Example](screenshots/image_simple.png) | ![Travel Map](screenshots/image_map.png) |
+| <img src="screenshots/image_main.png" alt="Main Menu" width="250"/> | <img src="screenshots/image_simple.png" alt="Simple Example" width="250"/> | <img src="screenshots/image_map.png" alt="Travel Map" width="250"/> |
 
 | Draggable Modal |
 |-----------------|
-| ![Draggable Modal](screenshots/image_drag.png) |
+| <img src="screenshots/image_drag.png" alt="Draggable Modal" width="250"/> |
 
 </div>
 
