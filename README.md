@@ -24,6 +24,9 @@ A Flutter package that allows you to display an interactive modal overlay on top
 - 🎭 **Theme Support**: Automatically adapts to light and dark themes
 - 📱 **Responsive**: Works seamlessly across different screen sizes
 - 🔧 **Easy to Use**: Simple controller-based API
+- 🎪 **Backdrop Overlay**: Optional backdrop with dismissible interaction
+- 📍 **Drag Indicator**: Visual indicator for draggable modals
+- 🔔 **Event Callbacks**: Callbacks for show, hide, and drag events
 
 ## Installation
 
@@ -31,7 +34,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  interactive_modal: ^0.0.1
+  interactive_modal: ^0.1.0
 ```
 
 Then run:
@@ -104,6 +107,7 @@ InteractiveModal(
   modalContent: MyControlPanel(),
   position: ModalPosition.bottom,
   modalHeight: 300,
+  modalWidth: 350,  // Custom width
   animate: true,
   animationDuration: Duration(milliseconds: 400),
   modalBackgroundColor: Colors.white,
@@ -118,6 +122,53 @@ InteractiveModal(
 )
 ```
 
+### Modal with Backdrop Overlay
+
+```dart
+InteractiveModal(
+  controller: _controller,
+  background: MyContent(),
+  modalContent: MyModalPanel(),
+  position: ModalPosition.center,
+  showBackdrop: true,              // Enable backdrop
+  backdropColor: Colors.black,      // Backdrop color
+  backdropOpacity: 0.5,             // Backdrop opacity
+  backdropDismiss: true,            // Dismiss on tap outside
+)
+```
+
+When `showBackdrop` is enabled, a semi-transparent overlay appears behind the modal. If `backdropDismiss` is true, tapping the backdrop will close the modal.
+
+### Modal with Event Callbacks
+
+```dart
+InteractiveModal(
+  controller: _controller,
+  background: MyBackground(),
+  modalContent: MyModal(),
+  onShow: () {
+    print('Modal is now visible');
+    // Perform actions when modal appears
+  },
+  onHide: () {
+    print('Modal is now hidden');
+    // Perform cleanup when modal disappears
+  },
+  onDragStart: () {
+    print('User started dragging');
+  },
+  onDragEnd: () {
+    print('User finished dragging');
+  },
+)
+```
+
+These callbacks are useful for:
+- Analytics tracking
+- Triggering animations
+- Updating state in parent widgets
+- Performing cleanup operations
+
 ### Draggable Modal Example
 
 ```dart
@@ -126,12 +177,17 @@ InteractiveModal(
   background: MyInteractiveContent(),
   modalContent: MyModalPanel(),
   position: ModalPosition.bottom,
-  isDraggable: true, // Enable drag functionality
+  isDraggable: true,              // Enable drag functionality
+  showDragIndicator: true,        // Show visual drag handle
   modalHeight: 250,
+  onDragStart: () => print('Drag started'),
+  onDragEnd: () => print('Drag ended'),
 )
 ```
 
-When `isDraggable` is set to `true`, users can touch and drag the modal to move it anywhere on the screen. This is particularly useful for:
+When `isDraggable` is set to `true`, users can touch and drag the modal to move it anywhere on the screen. The `showDragIndicator` property adds a visual handle at the top of the modal to indicate it's draggable.
+
+This is particularly useful for:
 - Floating control panels
 - Movable toolbars
 - Customizable UI layouts
@@ -186,21 +242,37 @@ Without `DragHandle`, the entire modal will be draggable. With `DragHandle`, onl
 | `background` | `Widget` | required | The background widget that remains interactive |
 | `modalContent` | `Widget` | required | The content to display in the modal |
 | `controller` | `InteractiveModalController` | required | Controller to manage modal visibility |
-| `position` | `ModalPosition` | `ModalPosition.bottom` | Position of the modal on screen |
-| `customPadding` | `EdgeInsets?` | `null` | Custom padding when using `ModalPosition.custom` |
+| `position` | `ModalPosition` | `ModalPosition.bottom` | Position of the modal on screen (top, center, bottom) |
 | `modalHeight` | `double?` | `screen height / 4` | Height of the modal |
+| `modalWidth` | `double?` | auto | Width of the modal (defaults to screen width - 20 for draggable, full width for fixed) |
 | `isDraggable` | `bool` | `false` | Whether the modal can be dragged around the screen |
+| `showBackdrop` | `bool` | `false` | Whether to show a backdrop/overlay behind the modal |
+| `backdropColor` | `Color?` | `Colors.black` | Color of the backdrop |
+| `backdropOpacity` | `double` | `0.5` | Opacity of the backdrop (0.0 to 1.0) |
+| `backdropDismiss` | `bool` | `true` | Whether tapping the backdrop dismisses the modal |
+| `showDragIndicator` | `bool` | `false` | Whether to show a visual drag indicator |
+| `dragIndicator` | `Widget?` | default bar | Custom drag indicator widget |
 | `animate` | `bool` | `true` | Whether to animate the modal appearance |
 | `animationDuration` | `Duration` | `300ms` | Duration of the animation |
+| `modalBackgroundColor` | `Color?` | `null` | Background color of the modal (auto-adapts to theme if null) |
+| `borderRadius` | `BorderRadius?` | `BorderRadius.circular(20)` | Border radius of the modal |
+| `boxShadow` | `List<BoxShadow>?` | default shadow | Shadow for the modal |
+| `onShow` | `VoidCallback?` | `null` | Callback when the modal is shown |
+| `onHide` | `VoidCallback?` | `null` | Callback when the modal is hidden |
+| `onDragStart` | `VoidCallback?` | `null` | Callback when dragging starts |
+| `onDragEnd` | `VoidCallback?` | `null` | Callback when dragging ends |
 | `modalBackgroundColor` | `Color?` | `null` | Background color of the modal (auto-adapts to theme if null) |
 | `borderRadius` | `BorderRadius?` | `BorderRadius.circular(20)` | Border radius of the modal |
 | `boxShadow` | `List<BoxShadow>?` | default shadow | Shadow for the modal |
 
 ### ModalPosition
 
+### ModalPosition
+
 ```dart
 enum ModalPosition {
   top,      // Modal appears at the top
+  center,   // Modal appears at the center
   bottom,   // Modal appears at the bottom
 }
 ```

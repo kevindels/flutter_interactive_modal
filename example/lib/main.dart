@@ -1,4 +1,5 @@
 import 'package:example/draggable_example.dart';
+import 'package:example/backdrop_example.dart';
 import 'package:flutter/material.dart';
 import 'travel_map_example.dart';
 import 'simple_example.dart';
@@ -154,6 +155,30 @@ class HomePage extends StatelessWidget {
                                   MaterialPageRoute(
                                     builder: (context) =>
                                         const DraggableExample(),
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 24),
+                            _buildExampleCard(
+                              context,
+                              title: 'Backdrop & Callbacks',
+                              description:
+                                  'Explore backdrop overlay and event callbacks',
+                              icon: Icons.layers_outlined,
+                              gradient: LinearGradient(
+                                colors: [
+                                  const Color(0xFF66A5AD),
+                                  const Color(0xFF66A5AD)
+                                      .withValues(alpha: 0.7),
+                                ],
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const BackdropExample(),
                                   ),
                                 );
                               },

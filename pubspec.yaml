@@ -1,6 +1,6 @@
 name: interactive_modal
-description: A Flutter package for displaying interactive modals over background content while maintaining full interactivity with both. Features draggable modals, customizable positioning, and smooth animations.
-version: 0.0.1
+description: A Flutter package for displaying interactive modals over background content while maintaining full interactivity with both. Features draggable modals, customizable positioning, smooth animations, backdrop overlay, and event callbacks.
+version: 0.1.0
 homepage: https://github.com/kevindels/flutter_interactive_modal
 repository: https://github.com/kevindels/flutter_interactive_modal
 issue_tracker: https://github.com/kevindels/flutter_interactive_modal/issues

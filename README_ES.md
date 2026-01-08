@@ -24,6 +24,9 @@ Un paquete Flutter que permite mostrar un modal interactivo sobre contenido de f
 - **Soporte de Temas**: Se adapta automáticamente a temas claro y oscuro
 - **Responsive**: Funciona perfectamente en diferentes tamaños de pantalla
 - **Fácil de Usar**: API simple basada en controladores
+- **Backdrop Overlay**: Fondo semitransparente opcional con interacción dismissible
+- **Indicador de Arrastre**: Indicador visual para modales arrastrables
+- **Callbacks de Eventos**: Callbacks para mostrar, ocultar y eventos de arrastre
 - **Sin Dependencias Externas**: Solo usa Flutter estándar (no requiere GetX)
 
 ## 📦 Instalación
@@ -32,7 +35,7 @@ Agrega esto al archivo `pubspec.yaml` de tu proyecto:
 
 ```yaml
 dependencies:
-  interactive_modal: ^0.0.1
+  interactive_modal: ^0.1.0
 ```
 
 Luego ejecuta:
@@ -185,14 +188,28 @@ InteractiveModal(
   modalContent: MiContenidoModal(),
   
   // Posición
-  position: ModalPosition.bottom,  // top, center, bottom, custom
-  customPadding: EdgeInsets.all(20),
+  position: ModalPosition.bottom,  // top, center, bottom
   
   // Dimensiones
   modalHeight: 300,
+  modalWidth: 350,  // Ancho personalizado
+  
+  // Backdrop/Overlay
+  showBackdrop: true,           // Mostrar fondo semitransparente
+  backdropColor: Colors.black,  // Color del backdrop
+  backdropOpacity: 0.5,         // Opacidad del backdrop
+  backdropDismiss: true,        // Cerrar al tocar backdrop
   
   // Funcionalidad de arrastre
-  isDraggable: true,  // Permite arrastrar el modal
+  isDraggable: true,            // Permite arrastrar el modal
+  showDragIndicator: true,      // Mostrar indicador visual de arrastre
+  dragIndicator: MyCustomIndicator(),  // Indicador personalizado
+  
+  // Callbacks de eventos
+  onShow: () => print('Modal mostrado'),
+  onHide: () => print('Modal oculto'),
+  onDragStart: () => print('Inicio de arrastre'),
+  onDragEnd: () => print('Fin de arrastre'),
   
   // Animación
   animate: true,
@@ -207,6 +224,9 @@ InteractiveModal(
       blurRadius: 10,
       spreadRadius: 5,
     ),
+  ],
+)
+```
   ],
 )
 ```

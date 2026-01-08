@@ -1,3 +1,28 @@
+## 0.1.0
+
+* **NEW FEATURES:**
+  - ✨ Added `ModalPosition.center` for centered modals
+  - 🎪 Added backdrop overlay with `showBackdrop`, `backdropColor`, `backdropOpacity`, and `backdropDismiss` parameters
+  - 📍 Added visual drag indicator with `showDragIndicator` and customizable `dragIndicator` widget
+  - 📏 Added `modalWidth` parameter for custom modal width
+  - 🔔 Added event callbacks: `onShow`, `onHide`, `onDragStart`, `onDragEnd`
+  - 🎯 Enhanced drag functionality with proper drag end callback support
+* **IMPROVEMENTS:**
+  - Improved draggable modal positioning logic
+  - Better animation handling for center position
+  - Enhanced theme adaptation for backdrop
+* **TESTS:**
+  - Added comprehensive widget tests for new features
+  - Added tests for backdrop functionality
+  - Added tests for event callbacks
+  - Added tests for drag indicator
+  - Improved overall test coverage
+* **DOCUMENTATION:**
+  - Updated README.md with new features and examples
+  - Updated README_ES.md with Spanish documentation
+  - Added detailed parameter descriptions
+  - Added usage examples for backdrop and callbacks
+
 ## 0.0.1
 
 * Initial release
